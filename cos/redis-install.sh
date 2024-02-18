@@ -84,4 +84,3 @@ echo ""
 echo "===========Redis安装完成，安装日志查看/usr/local/redis/install.log=========="
 echo ""
 echo ""
-
