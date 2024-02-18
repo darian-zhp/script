@@ -50,15 +50,21 @@ PASSWORD="Zhanghp139!@#"
 WRAPPWD="\"Zhanghp139!@#\""
 
 # modify password
-mysql --connect-expired-password -p$TEMP_PWD -S $SOCK -e 'alter user user() identified by '$WRAPPWD
+mysql --connect-expired-password -p"$TEMP_PWD" -S "$SOCK" -e 'alter user user() identified by '$WRAPPWD
 
 echo "修改数据库密码OK!"
 echo "new password: $PASSWORD"
 #mysql开启远程访问
 mysql -uroot -p$PASSWORD -e"grant all privileges on *.* to 'root'@'%' identified by $PASSWORD;"
 mysql -uroot -p$PASSWORD -e"flush privileges;"
-echo "开启远程访问"
 
+echo "开启远程访问"
 #关闭防火墙
 #systemctl stop firewalld.service
 #systemctl disable firewalld.service
+
+# 开启端口
+firewall-cmd --zone=public --add-port="$PORT"/tcp --permanent
+# 重启防火墙.
+firewall-cmd --reload
+echo 'Mysql 安装Ok.'
