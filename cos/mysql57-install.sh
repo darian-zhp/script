@@ -68,3 +68,30 @@ firewall-cmd --zone=public --add-port="$PORT"/tcp --permanent
 # 重启防火墙.
 firewall-cmd --reload
 echo 'Mysql 安装Ok.'
+
+
+# mysql 常用操作
+########################################################################################
+# 版本 :  mysql --version
+# 启动 :  service mysqld start
+# 状态:   service mysqld status
+#--------------------------------------- systemctl
+# 开启自启:      systemctl enable mysqld
+# 关闭自启:      systemctl disable mysqld
+# 查看状态:      systemctl status mysqld
+# 启动:         systemctl start mysqld
+# 关闭:         systemctl stop mysqld
+#---------------------------------------- 修改密码
+# 简单密码策略:
+#
+# 查看现有代码设计规则
+#       SHOW VARIABLES LIKE 'validate_password%';
+# 设置规则
+#       set global validate_password_policy=LOW；
+#       set global validate_password_length=6;
+# 修改密码
+#       ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
+# 开启远程并修改密码
+#       GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+#
+########################################################################################
